@@ -1,0 +1,13 @@
+name: web-ssr
+services:
+  - name: web-ssr
+    type: web
+    build:
+      type: dockerfile
+      dockerfile_path: ./Dockerfile
+    ports:
+      - port: 8080
+        http_path: /
+    env:
+      - key: NODE_ENV
+        value: production
