@@ -6,14 +6,8 @@ services:
       type: dockerfile
       dockerfile_path: ./Dockerfile
     ports:
-      - port: 8080
+      - port: 8000
         http_path: /
-    health_checks:
-      - type: tcp
-        port: 8080
-        interval: 30s
-        timeout: 5s
-        retries: 3
     env:
       - key: NODE_ENV
         value: production

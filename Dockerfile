@@ -19,8 +19,8 @@ RUN npm run build
 # Install serve globally to serve static files
 RUN npm install -g serve
 
-# Expose port 8080
-EXPOSE 8080
+# Expose port 8000
+EXPOSE 8000
 
 # Serve the static files from the browser build
-CMD ["serve", "-s", "dist/web-ssr/browser", "-l", "8080"]
+CMD ["serve", "-s", "dist/web-ssr/browser", "-l", "8000"]
