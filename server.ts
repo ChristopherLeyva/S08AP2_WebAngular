@@ -16,7 +16,17 @@ export function app(): express.Express {
 
   // All routes serve index.html for SPA routing
   server.get('**', (req, res) => {
-    res.sendFile(resolve(browserDistFolder, 'index.html'));
+    // Try to serve prerendered route first
+    const routePath = req.path === '/' ? '/inicio' : req.path;
+    const prerenderedFile = resolve(browserDistFolder, `.${routePath}/index.html`);
+    
+    // Check if prerendered file exists
+    if (require('fs').existsSync(prerenderedFile)) {
+      res.sendFile(prerenderedFile);
+    } else {
+      // Fallback to CSR index
+      res.sendFile(resolve(browserDistFolder, 'index.csr.html'));
+    }
   });
 
   return server;
